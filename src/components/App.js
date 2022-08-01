@@ -29,12 +29,17 @@ export default function App() {
             </div>
             <Routes>
                 <Route path="/" element={<Home movies={movies}/>} />
-                <Route path="/sessoes/:idFilme" element={<Session/>} />
+                <Route path="/sessoes/:idFilme" element={<Session/>} reload={reload}/>
                 <Route path="/assentos/:idSessao" element={<Seats 
                 setDataClient={setDataClient}
                 setSelectSeat ={setSelectSeat}
+                reload={reload}
                 />} />
-                <Route path="/sucesso" element={<Ticket dataClient={dataClient} selectSeat={selectSeat}/>} />
+                <Route path="/sucesso" element={<Ticket 
+                dataClient={dataClient} 
+                selectSeat={selectSeat}
+                reload={reload}
+                setReload={setReload}/>} />
             </Routes>
         </BrowserRouter>
     )

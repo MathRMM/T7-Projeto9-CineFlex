@@ -29,6 +29,9 @@ body {
     align-items: center;
     margin: 70px 0 120px 0;
     color: #293845;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .centerAling {
@@ -60,6 +63,7 @@ body {
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
 }
+
 
 .home ul img {
     width: 130px;

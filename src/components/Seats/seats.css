@@ -46,7 +46,7 @@
 }
 
 
-.seats button {
+.seats button, .ticket button {
     width: 225px;
     height: 42px;
     font-size: 18px;

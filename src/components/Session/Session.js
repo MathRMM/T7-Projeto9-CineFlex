@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import './session.css'
 
-export default function Session() {
+export default function Session({ reload }) {
 
     const { idFilme } = useParams()
     const [movie, setMovie] = useState([])
@@ -16,9 +16,9 @@ export default function Session() {
                 setMovie(res.data)
                 setDays(res.data.days)
             })
-    }, [])
+    }, [reload])
 
-    function RenderSession({weekday, date, showTimes }) {
+    function RenderSession({ weekday, date, showTimes }) {
 
         return (
             <li>
@@ -50,8 +50,10 @@ export default function Session() {
                 />)}
             </ul>
             <div className='footer centerAling'>
-                <div className='poster centerAling'><img src={movie.posterURL} /></div>
-                <h1>{movie.title}</h1>
+                <div className='movie'>
+                    <div className='poster centerAling'><img src={movie.posterURL} /></div>
+                    <h1>{movie.title}</h1>
+                </div>
             </div>
         </div>
     )

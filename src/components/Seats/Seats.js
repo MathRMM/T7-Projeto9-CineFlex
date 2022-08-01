@@ -6,7 +6,7 @@ import Bolinha from './Bolinha'
 import upData from '../upData'
 import './seats.css'
 
-export default function Seats({setDataClient, setSelectSeat}) {
+export default function Seats({ setDataClient, setSelectSeat, reload }) {
 
     const { idSessao } = useParams()
     const [session, setSession] = useState([])
@@ -29,10 +29,10 @@ export default function Seats({setDataClient, setSelectSeat}) {
                 setDays(res.data.day)
             })
 
-    }, [send])
+    }, [send, reload])
     console.log(session)
-    
-    function handleForm(e){
+
+    function handleForm(e) {
         e.preventDefault()
         let body = {
             movie: movie.title,
@@ -42,11 +42,11 @@ export default function Seats({setDataClient, setSelectSeat}) {
         }
 
         setSelectSeat(body)
-        upData({select, name, cpf , setSend , setDataClient})
-        
+        upData({ select, name, cpf, setSend, setDataClient })
+
     }
 
-    if(send) {
+    if (send) {
         navigate("/sucesso")
     }
 
@@ -82,19 +82,22 @@ export default function Seats({setDataClient, setSelectSeat}) {
                     id="name"
                     name="name"
                     value={name}
-                    onChange={e => setName(e.target.value)} />
+                    onChange={e => setName(e.target.value)}
+                    required />
                 <label>CPF do comprador:</label>
                 <input type="text" name="cpf"
                     value={cpf}
                     onChange={e => setCPF(e.target.value)}
                     maxLength="11"
-                />
+                    required />
                 <button type='submit'>Reservar assento(s)</button>
             </form>
             <div className='footer centerAling'>
-                <div className='poster centerAling'><img src={movie.posterURL} /></div>
-                <h1><p>{movie.title}</p>
-                    <p>{days.weekday}<span>{session.name}</span></p></h1>
+                <div className='movie'>
+                    <div className='poster centerAling'><img src={movie.posterURL} /></div>
+                    <h1><p>{movie.title}</p>
+                        <p>{days.weekday}<span>{session.name}</span></p></h1>
+                </div>
             </div>
         </div>
     )

@@ -4,22 +4,20 @@ import axios from 'axios'
 
 import Home from "./Home/Home"
 import Session from "./Session/Session"
+import Seats from "./Seats/Seats"
 
 export default function App() {
     const [movies, setMovies] = useState([])
     const [idFilme, setIdFilmes] = useState([])
-    const [session, setSession] = useState({})
+    const [session, setSession] = useState([])
     const [seats, setsSeat] = useState([])
     const [reload, setReload] = useState(false)
 
     useEffect(() => {
         //Lista de Filmes
-        axios.get('https://mock-api.driven.com.br/api/v5/cineflex/movies')
+        axios.get('https://mock-api.driven.com.br/api/v7/cineflex/movies')
             .then((e) => setMovies(e.data))
-        /* axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
-            .then((res) => setSession(res.data)) */
-    }, [idFilme])
-    /* console.log(session) */
+    }, [reload])
 
     return (
         <BrowserRouter>
@@ -27,8 +25,9 @@ export default function App() {
                 CINEFLEX
             </div>
             <Routes>
-                <Route path="/" element={<Home movies={movies} setIdFilmes={setIdFilmes} />} />
-                <Route path="/sessoes/:idFilme" element={<Session />} />
+                <Route path="/" element={<Home movies={movies}/>} />
+                <Route path="/sessoes/:idFilme" element={<Session/>} />
+                <Route path="/assentos/:idSessao" element={<Seats />} />
             </Routes>
         </BrowserRouter>
     )

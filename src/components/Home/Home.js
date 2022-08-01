@@ -7,7 +7,7 @@ export default function Home({ movies, setIdFilmes }) {
 
         return (
             <Link to={`/sessoes/${movie.id}`}>
-                <li className='centerAling' onClick={() => setIdFilmes(movie.id)}>
+                <li className='centerAling'>
                     <img src={movie.posterURL} />
                 </li>
             </Link>

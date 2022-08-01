@@ -1,0 +1,41 @@
+.seats ul{
+    width: 360px;
+    height: min-content;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.seats span{
+    margin-left: 6px;
+}
+
+.seats .subtitle{
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+}
+.seats .subtitle div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seats form{
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0px;
+
+    font-size: 18px;
+    line-height: 21px;
+}
+.seats label{
+    margin-top: 5px;
+}
+
+.seats input{
+    height: 25px;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+}

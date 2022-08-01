@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import './session.css'
 
-export default function Session({ setSession }) {
+export default function Session() {
 
     const { idFilme } = useParams()
     const [movie, setMovie] = useState([])
@@ -17,7 +17,6 @@ export default function Session({ setSession }) {
                 setDays(res.data.days)
             })
     }, [])
-    /* console.log(movie) */
 
     function RenderSession({weekday, date, showTimes }) {
 

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import Bolinha from './Bolinha'
+import upData from '../upData'
 import './seats.css'
 
-export default function Seats() {
+export default function Seats({setDataClient, setSelectSeat}) {
 
     const { idSessao } = useParams()
     const [session, setSession] = useState([])
@@ -13,6 +14,11 @@ export default function Seats() {
     const [seats, setsSeats] = useState([])
     const [days, setDays] = useState([])
     const [select, setSelect] = useState([])
+    const [name, setName] = useState('')
+    const [cpf, setCPF] = useState('')
+    const [send, setSend] = useState(false)
+
+    let navigate = useNavigate('')
 
     useEffect(() => {
         axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`)
@@ -23,8 +29,26 @@ export default function Seats() {
                 setDays(res.data.day)
             })
 
-    }, [])
-    console.log(select)
+    }, [send])
+    console.log(session)
+    
+    function handleForm(e){
+        e.preventDefault()
+        let body = {
+            movie: movie.title,
+            date: days.date,
+            seats: select,
+            hour: session.name
+        }
+
+        setSelectSeat(body)
+        upData({select, name, cpf , setSend , setDataClient})
+        
+    }
+
+    if(send) {
+        navigate("/sucesso")
+    }
 
     return (
         <div className="seats centerPage">
@@ -36,7 +60,6 @@ export default function Seats() {
                     isAvailable={seat.isAvailable}
                     select={select}
                     setSelect={setSelect}>{seat.name}</Bolinha>)}
-
             </ul>
             <div className='subtitle'>
                 <div>
@@ -53,15 +76,21 @@ export default function Seats() {
                 </div>
             </div>
 
-            <form>
+            <form onSubmit={handleForm}>
                 <label>Nome do comprador:</label>
-                <input type="text" id="fname" name="fname" />
+                <input type="text"
+                    id="name"
+                    name="name"
+                    value={name}
+                    onChange={e => setName(e.target.value)} />
                 <label>CPF do comprador:</label>
                 <input type="text" name="cpf"
-                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                    />
+                    value={cpf}
+                    onChange={e => setCPF(e.target.value)}
+                    maxLength="11"
+                />
+                <button type='submit'>Reservar assento(s)</button>
             </form>
-
             <div className='footer centerAling'>
                 <div className='poster centerAling'><img src={movie.posterURL} /></div>
                 <h1><p>{movie.title}</p>

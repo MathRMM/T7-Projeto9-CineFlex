@@ -64,6 +64,23 @@ body {
     border-radius: 3px;
 }
 
+.header button {
+    width: 40px;
+    height: 26px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E8833A;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    position: fixed;
+    left: 10px;
+
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+}
 
 .home ul img {
     width: 130px;

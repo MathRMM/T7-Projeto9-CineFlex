@@ -19,7 +19,6 @@ export default function Session({ reload }) {
     }, [reload])
 
     function RenderSession({ weekday, date, showTimes }) {
-
         return (
             <li>
                 <p>{weekday} - {date}</p>

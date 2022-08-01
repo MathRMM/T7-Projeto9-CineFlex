@@ -12,5 +12,4 @@ export default function upData({select , name, cpf , setSend ,setDataClient}){
     setDataClient(dataClient),
     setSend(true)
     );
-        console.log (dataClient)
 }

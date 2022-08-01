@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import Home from "./Home/Home"
@@ -8,23 +8,22 @@ import Seats from "./Seats/Seats"
 import Ticket  from "./Ticket/Ticket"
 
 export default function App() {
+    const navigate = useNavigate()
     const [movies, setMovies] = useState([])
     const [dataClient, setDataClient] = useState([])
     const [selectSeat, setSelectSeat] = useState([])
-    /* const [session , setSession] = useState([]) */
     const [reload, setReload] = useState(false)
-
+    
     useEffect(() => {
         //Lista de Filmes
         axios.get('https://mock-api.driven.com.br/api/v7/cineflex/movies')
             .then((e) => setMovies(e.data))
     }, [reload])
 
-    console.log(selectSeat)
-
     return (
-        <BrowserRouter>
+        <>
             <div className="header">
+            <button onClick={() => navigate(-1)}>Voltar</button>
                 CINEFLEX
             </div>
             <Routes>
@@ -41,6 +40,6 @@ export default function App() {
                 reload={reload}
                 setReload={setReload}/>} />
             </Routes>
-        </BrowserRouter>
+        </>
     )
 }

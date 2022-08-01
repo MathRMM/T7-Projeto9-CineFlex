@@ -30,7 +30,6 @@ export default function Seats({ setDataClient, setSelectSeat, reload }) {
             })
 
     }, [send, reload])
-    console.log(session)
 
     function handleForm(e) {
         e.preventDefault()

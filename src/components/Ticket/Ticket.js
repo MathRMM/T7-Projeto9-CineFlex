@@ -1,12 +1,9 @@
-import { useState } from "react"
 import { Link } from 'react-router-dom'
 
 import './ticket.css'
 
 export default function Ticket({ dataClient, selectSeat, reload, setReload}) {
     const seats = [...selectSeat.seats]
-    console.log(dataClient, selectSeat.seats)
-
 
     return (
         <div className="ticket centerPage">

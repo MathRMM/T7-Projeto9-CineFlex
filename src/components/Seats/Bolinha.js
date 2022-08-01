@@ -5,7 +5,7 @@ import { useState } from 'react'
 export default function Bolinha({ children, id, isAvailable, type , select, setSelect}) {
     const [isClicked, setClicked]= useState(false)
 
-    const Yellow = ()=> <Icon color ='#FBE192' borderColor='#F7C52B'>{children}</Icon>
+    const Yellow = ()=> <Icon color ='#FBE192' borderColor='#F7C52B' onClick={()=>alert('Assento não disponivel')}>{children}</Icon>
     const Gray = ()=><Icon color ='#C3CFD9' borderColor='#808F9D' onClick={()=>saveSeats(id,children)}>{children}</Icon>
     const Green = () => <Icon color ='#8DD7CF' borderColor='#1AAE9E' onClick={()=>removeSeat(id)}>{children}</Icon>
 
